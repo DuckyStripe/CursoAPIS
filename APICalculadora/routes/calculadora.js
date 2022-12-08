@@ -3,6 +3,7 @@ const { check }= require('express-validator');
 const { suma } = require('../controllers/suma');
 const { resta } = require('../controllers/resta');
 const { multiplicacion } = require('../controllers/multiplicacion');
+const { division } = require('../controllers/division');
 const { validateCamps } = require('../middlewares/validate_camps');
 //Controladores
 
@@ -31,6 +32,15 @@ router.get('/multiplicacion',
         validateCamps
     ],
     multiplicacion
+);
+
+router.get('/division',
+[
+    check('num1', 'El primer número es obligatorio y debe de ser un numero.').exists().isNumeric(),
+    check('num2', 'El segundo número es obligatorio y debe de ser un numero').exists().isNumeric(),
+    validateCamps
+],
+division
 );
 
 module.exports = router;
